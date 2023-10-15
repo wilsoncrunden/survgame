@@ -1,0 +1,79 @@
+@font-face {
+    font-family: "JetBrainsMono";
+    src: url("/media/JetBrainsMono.ttf");
+}
+
+/*
+    PAGE CONTENT
+*/
+* {
+    font-family: system-ui;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: start;
+    align-items: center;
+}
+
+/*
+    SURVGAME HEADING
+*/
+#title {
+    font-family: "JetBrainsMono";
+    font-size: 46px;
+}
+
+/*
+    PAGE FOOTER
+*/
+footer {
+    position: absolute;
+    bottom: 3px;
+
+    font-family: "JetBrainsMono";
+}
+
+footer a {
+    font-family: "JetBrainsMono";
+}
+
+/*
+    STANDARD BUTTON
+*/
+.btn {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(101, 101, 255);
+
+    font-size: 18px;
+    font-weight: bold;
+
+    box-shadow: 0px 5px rgb(92, 92, 233);
+
+    transition: all 0.3s ease;
+
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgb(110, 110, 255);
+    box-shadow: 0px 5px rgb(101, 101, 233);
+}
+
+.btn:active {
+    box-shadow: 0px 3px rgb(101, 101, 233);
+    transform: translateY(2px);
+}
+
+/*
+    STANDARD TEXT FIELD
+*/
+.textField:focus {
+    outline-width: 2px;
+    outline-color: rgb(96, 96, 255);
+}

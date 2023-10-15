@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>survgame - Register</title>
+
+    <link rel="stylesheet" href="/static/global.css">
+    <link rel="stylesheet" href="/static/register/index.css">
+</head>
+<body>
+    <div id="content">
+        <h1 id="title">survgame</h1>
+
+        <form id="formArea" action="/api/register" method="post">
+            <h2>📃 Register</h2>
+
+            <b>Username</b>
+            <input class="textField" type="text" name="username" placeholder="Username...">
+
+            <b>Password</b>
+            <input class="textField" type="password" name="password" placeholder="Password...">
+
+            <b>Confirm Password</b>
+            <input class="textField" type="password" name="confirmPassword" placeholder="Confirm Password...">
+            
+
+            <button class="btn" type="submit">Register</button>
+        </form>
+
+        <footer>
+            by <a href="https://wintrcat.uk">wintrcat</a>
+        </footer>
+    </div>
+</body>
+</html>
