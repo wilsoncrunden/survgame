@@ -6,7 +6,7 @@ const app = express();
 
 app.use("/media", express.static("assets"));
 app.use("/static", express.static("client"));
-app.use(express.urlencoded());
+app.use(express.json());
 
 app.use(require("./routes/register"));
 
