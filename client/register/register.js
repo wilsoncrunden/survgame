@@ -3,6 +3,7 @@ $("#registerButton").click(async () => {
     let username = $("#username").val();
     let password = $("#password").val();
     let confirmPassword = $("#confirmPassword").val();
+    let captchaToken = grecaptcha.getResponse();
 
     try {
         let registrationAttempt = await fetch("/api/register", {
@@ -11,7 +12,7 @@ $("#registerButton").click(async () => {
                 "Content-Type": "application/json"
             },
             "body": JSON.stringify({
-                username, password, confirmPassword
+                username, password, confirmPassword, captchaToken
             })
         });
 

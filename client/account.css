@@ -4,7 +4,6 @@
 
     gap: 10px;
     align-items: center;
-
     padding: 20px 0px;
 
     border: 2px solid black;
@@ -14,10 +13,6 @@
     margin-top: 0px;
 }
 
-#formArea button {
-    margin: 10px;
-}
-
 #formArea input {
     margin: 0px 60px;
 
@@ -25,6 +20,10 @@
     height: 30px;
 
     font-size: 16px;
+}
+
+.g-recaptcha {
+    transform: scale(0.85);
 }
 
 #error {
