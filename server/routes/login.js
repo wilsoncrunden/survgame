@@ -10,8 +10,6 @@ const router = new Router();
 
 router.post("/api/login", async (req, res) => {
 
-    console.log("login request");
-
     let { 
         username = "", 
         password = "" 
