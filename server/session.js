@@ -50,8 +50,6 @@ async function update(username, token) {
 async function parser(req, res, next) {
     req.session = extract(req.headers.cookie ?? "");
     req.username = await usernameOf(req.session);
-    console.log(req.session);
-    console.log(req.username);
     next();
 }
 
