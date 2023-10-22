@@ -1,23 +1,21 @@
-$("#registerButton").click(async () => {
+$("#loginButton").click(async () => {
 
     let username = $("#username").val();
     let password = $("#password").val();
-    let confirmPassword = $("#confirmPassword").val();
-    let captchaToken = grecaptcha.getResponse();
 
     try {
-        let registrationAttempt = await fetch("/api/register", {
+        let loginAttempt = await fetch("/api/login", {
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json"
             },
             "body": JSON.stringify({
-                username, password, confirmPassword, captchaToken
+                username, password
             })
         });
 
-        if (registrationAttempt.status == 400) {
-            $("#error").html(await registrationAttempt.text());
+        if (loginAttempt.status == 400) {
+            $("#error").html(await loginAttempt.text());
         } else {
             location.href = "/dash";
         }

@@ -3,11 +3,64 @@ const bcrypt = require("bcrypt");
 const fetch = require("node-fetch");
 
 const database = require("./../database");
+const session = require("./../session");
 
 /**
  * @type {Router}
  */
 const router = new Router();
+
+function verifyCredentials(res, username, password) {
+    // Username should be between 3-18 characters long
+    if (username.length < 3 || username.length > 18) {
+        res.status(400).send("Username must be 3-18 characters long.");
+        return false;
+    }
+
+    // Username should be alphanumeric including _
+    if (/\W/.test(username)) {
+        res.status(400).send("Username must be alphanumeric including _");
+        return false;
+    }
+
+    // Username cannot have repeating _'s
+    if (/_{2,}/.test(username)) {
+        res.status(400).send("Username cannot have repetitive _'s.");
+        return false;
+    }
+
+    // Password should be between 8-64 characters long
+    if (password.length < 8 || password.length > 64) {
+        res.status(400).send("Password must be 8-64 characters long.");
+        return false;
+    }
+
+    // Password should have 1 lower and upper case letter
+    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+        res.status(400).send("Password needs lower and upper case letters.");
+        return false;
+    }
+
+    // Password should have 1 symbol
+    if (!/[\W_]/.test(password)) {
+        res.status(400).send("Password needs at least one symbol.");
+        return false;
+    }
+
+    // Password cannot have 3 consecutive repeating letters
+    if (/(.)\1{2,}/.test(password)) {
+        res.status(400).send("Password has repetitive characters.");
+        return false;
+    }
+
+    // Password cannot contain the username
+    if (password.toLowerCase().includes(username.toLowerCase())) {
+        res.status(400).send("Password cannot contain your username.");
+        return false;
+    }
+
+    return true;
+}
 
 async function verifyCaptcha(token) {
     try {
@@ -30,73 +83,36 @@ async function verifyCaptcha(token) {
 router.post("/api/register", async (req, res) => {
 
     let { 
-        username, 
-        password, 
-        confirmPassword, 
-        captchaToken 
+        username = "",
+        password = "", 
+        confirmPassword = "", 
+        captchaToken = "" 
     } = req.body;
 
-    // Username should be between 3-18 characters long
-    if (username.length < 3 || username.length > 18) {
-        return res.status(400).send("Username must be 3-18 characters long.");
+    if (await database.accountExists(username)) {
+        return res.status(400).send("An account with this username already exists.");
     }
 
-    // Username should be alphanumeric including _
-    if (/\W/.test(username)) {
-        return res.status(400).send("Username must be alphanumeric including _");
-    }
-
-    // Username must begin with a letter
-    if (/^[^a-z]/i.test(username)) {
-        return res.status(400).send("Username must start with a letter.");
-    }
-
-    // Username cannot have repeating _'s
-    if (/_{2,}/.test(username)) {
-        return res.status(400).send("Username cannot have repetitive _'s.");
-    }
-
-    // Password should match the confirm password
     if (password != confirmPassword) {
         return res.status(400).send("Passwords do not match.");
     }
 
-    // Password should be between 8-64 characters long
-    if (password.length < 8 || password.length > 64) {
-        return res.status(400).send("Password must be 8-64 characters long.");
+    if (!verifyCredentials(res, username, password)) {
+        return;
     }
-
-    // Password should have 1 lower and upper case letter
-    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
-        return res.status(400).send("Password needs lower and upper case letters.");
-    }
-
-    // Password should have 1 symbol
-    if (!/[\W_]/.test(password)) {
-        return res.status(400).send("Password needs at least one symbol.");
-    }
-
-    // Password cannot have 3 consecutive repeating letters
-    if (/(.)\1{2,}/.test(password)) {
-        return res.status(400).send("Password has repetitive characters.");
-    }
-
-    // Password cannot contain the username
-    if (password.toLowerCase().includes(username.toLowerCase())) {
-        return res.status(400).send("Password cannot contain your username.");
-    }
-
-    // Captcha must be complete and valid
-    if (!(await verifyCaptcha(captchaToken))) {
+    
+    if (!await verifyCaptcha(captchaToken)) {
         return res.status(400).send("You must complete the CAPTCHA.");
     }
 
     let hashedPassword = await bcrypt.hash(password, 10);
-    
-    console.log("Thanks for logging in bro");
+    database.executeQuery("INSERT INTO accounts (username, password) VALUES(?, ?)", [username, hashedPassword]);
 
-    let thing = await database.executeQuery("SELECT * FROM accounts");
-    console.log(thing);
+    let sessionToken = session.generate();
+    await session.update(username, sessionToken);
+    res.cookie(session.COOKIE_NAME, sessionToken);
+
+    res.sendStatus(200);
 
 });
 

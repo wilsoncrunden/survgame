@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>survgame - Register</title>
+    <title>survgame - Login</title>
 
     <link rel="icon" href="/media/favicon.ico">
 
@@ -13,7 +13,7 @@
         <h1 id="title">survgame</h1>
 
         <div id="formArea">
-            <h2>📃 Register</h2>
+            <h2>📃 Login</h2>
 
             <b>Username</b>
             <input id="username" class="textField" type="text" placeholder="Username...">
@@ -21,16 +21,11 @@
             <b>Password</b>
             <input id="password" class="textField" type="password" placeholder="Password...">
 
-            <b>Confirm Password</b>
-            <input id="confirmPassword" class="textField" type="password" placeholder="Confirm Password...">
-
-            <div class="g-recaptcha" data-sitekey="6Ldd87MoAAAAAC3v0rBf26ETIhiHgSZj4DY0LUA-"></div>
-
             <span id="error"></span>
 
-            <button id="registerButton" class="btn">Register</button>
+            <button id="loginButton" class="btn">Login</button>
 
-            <span>Already have an account? <a href="/login">Login</a></span>
+            <span>Don't have an account? <a href="/register">Register</a></span>
         </div>
 
         <footer>
@@ -39,8 +34,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
 
-    <script src="/static/register/register.js"></script>
+    <script src="/static/login/login.js"></script>
 </body>
 </html>
