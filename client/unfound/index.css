@@ -1,0 +1,28 @@
+body {
+    overflow: hidden;
+}
+
+#recordPlayer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 615px;
+    height: 615px;
+
+    background-image: url("/media/secret.png");
+}
+
+#playButton {
+    width: 190px;
+    height: 190px;
+    border-radius: 200px;
+
+    font-size: 72px;
+    color: white;
+}
+
+#resetButton {
+    display: none;
+    z-index: 1;
+}

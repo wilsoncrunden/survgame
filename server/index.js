@@ -42,6 +42,26 @@ app.get("/dash", async (req, res) => {
     res.sendFile(path.resolve("./client/dash/index.html"));
 });
 
+app.get("/play", async (req, res) => {
+    res.redirect("/dash");
+});
+
+app.get("/play/:roomCode", async (req, res) => {
+    if (req.username == null) {
+        return res.redirect("/login");
+    }
+    res.sendFile(path.resolve("./client/play/index.html"));
+});
+
+// 404 Route
+app.get("/404", async (req, res) => {
+    res.sendFile(path.resolve("./client/unfound/index.html"));
+})
+
+app.use(async (req, res) => {
+    res.redirect("/404");
+});
+
 // Listening
 app.listen(process.env.EXPRESS_PORT, async () => {
     console.log("Server running on port " + process.env.EXPRESS_PORT);
