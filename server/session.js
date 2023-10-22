@@ -36,6 +36,10 @@ async function usernameOf(token) {
  * @description Inserts or updates an accounts session token in the database
  */
 async function update(username, token) {
+    if (token == null) {
+        return await database.executeQuery("DELETE FROM sessions WHERE username = ?", [username]);
+    }
+
     let matchingSessions = await database.executeQuery("SELECT * FROM sessions WHERE username = ?", [username]);
     if (matchingSessions.length == 0) {
         await database.executeQuery("INSERT INTO sessions (username, token) VALUES(?, ?)", [username, token]);

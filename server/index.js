@@ -14,6 +14,9 @@ app.use(require("./session").parser);
 // API Routes
 app.use(require("./routes/register"));
 app.use(require("./routes/login"));
+app.use(require("./routes/logout"));
+app.use(require("./routes/delete"));
+app.use(require("./routes/profile"));
 
 // Static Routes
 app.get("/", async (req, res) => {

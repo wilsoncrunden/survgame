@@ -1,0 +1,44 @@
+.dashboardSection {
+    width: 60vw;
+    padding: 20px 50px;
+    text-align: center;
+
+    border: 2px solid black;
+}
+
+#profile h2 {
+    margin-top: 0px;
+}
+
+#publicRoom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+    padding: 10px 20px;
+
+    background-color: rgb(226, 226, 226);
+}
+
+#publicRoom b {
+    font-size: 20px;
+}
+
+#publicRoomPlayerCount {
+    margin-right: 10px;
+}
+
+#joinPublicRoomButton {
+    vertical-align: middle;
+}
+
+#roomCode {
+    vertical-align: middle;
+    
+    width: 20vw;
+    height: 40px;
+
+    text-align: center;
+    font-size: 18px;
+}

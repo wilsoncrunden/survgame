@@ -6,14 +6,44 @@
     <link rel="icon" href="/media/favicon.ico">
 
     <link rel="stylesheet" href="/static/global.css">
+    <link rel="stylesheet" href="/static/dash/index.css">
 </head>
 <body>
     <div id="content">
         <h1 id="title">survgame</h1>
 
-        <h3>welcome to the dashboard kid thanks for logging in</h3>
+        <div id="profile" class="dashboardSection">
+            <h2 id="username">Logged in as ...</h2>
+
+            <button id="logoutButton" class="red btn">Logout</button>
+            <button id="deleteAccountButton" class="red btn">Delete Account</button>
+        </div>
+
+        <h1>My Worlds (0)</h1>
+
+        <div class="dashboardSection">
+            <h3 style="margin-top:0"><i>🚧 Under development</i></h3>
+            <button id="createWorldButton" class="blue btn">Create</button>
+        </div>
+
+        <h1>Join a world</h1>
+
+        <div class="dashboardSection">
+            <div id="publicRoom">
+                <b>Survgame Public Room</b>
+                <div>
+                    <span id="publicRoomPlayerCount">0 Players Online</span>
+                    <button id="joinPublicRoomButton" class="blue btn">Join</button>
+                </div>
+            </div>
+
+            <input id="roomCode" type="text" class="textField" placeholder="Room code...">
+            <button id="joinRoomCodeButton" class="blue btn">Join</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="/static/dash/account.js"></script>
 </body>
 </html>

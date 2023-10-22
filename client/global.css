@@ -49,25 +49,42 @@ footer a {
 
     border: none;
     border-radius: 5px;
-    background-color: rgb(101, 101, 255);
 
     font-size: 18px;
     font-weight: bold;
-
-    box-shadow: 0px 5px rgb(92, 92, 233);
 
     transition: all 0.3s ease;
 
     cursor: pointer;
 }
 
-.btn:hover {
+.blue {
+    background-color: rgb(101, 101, 255);
+    box-shadow: 0px 5px rgb(92, 92, 233);
+}
+
+.blue:hover {
     background-color: rgb(110, 110, 255);
     box-shadow: 0px 5px rgb(101, 101, 233);
 }
 
-.btn:active {
+.blue:active {
     box-shadow: 0px 3px rgb(101, 101, 233);
+    transform: translateY(2px);
+}
+
+.red {
+    background-color: rgb(255, 70, 70);
+    box-shadow: 0px 5px rgb(236, 65, 65);
+}
+
+.red:hover {
+    background-color: rgb(255, 79, 79);
+    box-shadow: 0px 5px rgb(255, 70, 70);
+}
+
+.red:active {
+    box-shadow: 0px 3px rgb(255, 70, 70);
     transform: translateY(2px);
 }
 
