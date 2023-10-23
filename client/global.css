@@ -3,6 +3,13 @@
     src: url("/media/JetBrainsMono.ttf");
 }
 
+:root {
+    --primary-color: rgb(101, 101, 255);
+    --primary-color-darker: rgb(92, 92, 233);
+    --secondary-color: rgb(255, 70, 70);
+    --secondary-color-darker: rgb(236, 65, 65);
+}
+
 /*
     PAGE CONTENT
 */
@@ -59,8 +66,8 @@ footer a {
 }
 
 .blue {
-    background-color: rgb(101, 101, 255);
-    box-shadow: 0px 5px rgb(92, 92, 233);
+    background-color: var(--primary-color);
+    box-shadow: 0px 5px var(--primary-color-darker);
 }
 
 .blue:hover {
@@ -74,8 +81,8 @@ footer a {
 }
 
 .red {
-    background-color: rgb(255, 70, 70);
-    box-shadow: 0px 5px rgb(236, 65, 65);
+    background-color: var(--secondary-color);
+    box-shadow: 0px 5px var(--secondary-color-darker);
 }
 
 .red:hover {

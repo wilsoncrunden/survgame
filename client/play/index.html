@@ -6,12 +6,48 @@
     <link rel="icon" href="/media/favicon.ico">
 
     <link rel="stylesheet" href="/static/global.css">
+    <link rel="stylesheet" href="/static/play/index.css">
 </head>
 <body>
     <div id="content">
         <h1 id="title">survgame</h1>
+
+        <h2 id="username">Logged in as ...</h2>
+
+        <div id="game">
+            <div id="player">
+                <canvas width="800" height="600"></canvas>
+            </div>
+
+            <div id="chat">
+                <b id="chatTitle">Room Chat</b>
+
+                <span>Shane: hello its me boyd</span>
+                <span>WintrCat: get real script</span>
+                <span>mikoexe: help me</span>
+                
+                <!-- 19 comments fit on same page -->
+            </div>
+
+            <div id="chatForm">
+                <input id="chatMessageField" class="textField" type="text" placeholder="Send Message...">
+                <button id="sendChatMessageButton">
+                    <img src="/media/send.png" alt="▶">
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="/static/play/account.js"></script>
+
+    <!-- GAME -->
+
+    <!-- Socket Client -->
+    <script src="/static/play/game/client.js"></script>
+
+    <!-- Chat -->
+    <script src="/static/play/game/chat/send.js"></script>
 </body>
 </html>

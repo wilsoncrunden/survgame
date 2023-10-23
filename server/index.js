@@ -2,8 +2,12 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 require("./database").keepalive();
+require("./socket/socket").registerListeners();
 
 const app = express();
+
+// Plugins
+require("express-ws")(app);
 
 // Middlewares
 app.use("/media", express.static("assets"));
@@ -18,6 +22,8 @@ app.use(require("./routes/logout"));
 app.use(require("./routes/delete"));
 app.use(require("./routes/profile"));
 
+app.use(require("./socket/router"));
+
 // Static Routes
 app.get("/", async (req, res) => {
     if (req.username == null) {
@@ -25,6 +31,10 @@ app.get("/", async (req, res) => {
     } else {
         res.redirect("/dash");
     }
+});
+
+app.get("/attributions", async (req, res) => {
+    res.sendFile(path.resolve("./client/attributions/index.html"));
 });
 
 app.get("/register", async (req, res) => {
