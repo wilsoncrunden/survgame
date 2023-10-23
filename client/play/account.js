@@ -1,7 +1,7 @@
 fetch("/api/profile", {
     "method": "GET"
 }).then(async res => {
-    let profile = await res.json();
+    let { username } = await res.json();
 
-    $("#username").html("Logged in as " + profile.username);
+    $("#username").html(`Connected to ${roomCode.toUpperCase()} as ${username}`);
 });

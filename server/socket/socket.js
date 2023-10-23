@@ -1,39 +1,82 @@
-const rooms = {};
+const Room = require("./lib/room");
 
 const eventBus = require("./event");
 
 /**
- * @description Logs given client as in the given room
+ * @type {Room[]}
  */
-function addClient(roomCode, client) {
-    rooms[roomCode] ??= [];
-    rooms[roomCode].push(client);
+const rooms = [];
+
+/**
+ * @description Adds a client to a room
+ */
+function addPlayer(roomCode, client) {
+    // Add player to existing room
+    for (let room of rooms) {
+        if (room.code == roomCode) {
+            if (room.players().includes(client.username)) {
+                return false;
+            }
+
+            room.clients.add(client);
+            return true;
+        }
+    }
+
+    // If no such room exists, create a new one with player in it
+    // Change this later when rooms must be opened manually
+    let newRoom = new Room(roomCode);
+    newRoom.clients.add(client);
+    rooms.push(newRoom);
+
+    return true;
 }
 
 /**
- * @description Logs given client as no longer in the given room
+ * @description Disconnects a client from any room
  */
-function removeClient(roomCode, client) {
-    rooms[roomCode].splice(rooms[roomCode].indexOf(client), 1);
+function disconnectPlayer(username) {
+    for (let room of rooms) {
+        if (room.disconnect(username)) break;
+    }
 }
 
 /**
- * @description Returns list of clients in a given room
+ * @description Returns the clients of a room given its room code
  */
 function clientsOf(roomCode) {
-    return rooms[roomCode] ?? [];
+    for (let room of rooms) {
+        if (room.code == roomCode) {
+            return room.clients.values();
+        }
+    }
+    return [];
+}
+
+/**
+ * @description Returns the room code of a given client or null
+ */
+function roomCodeOf(username) {
+    for (let room of rooms) {
+        if (room.players().includes(username)) {
+            return room.code;
+        }
+    }
+    return null;
 }
 
 /**
  * @description Registers vanilla listeners against the event bus
  */
 function registerListeners() {
+    eventBus.listen("JOIN", require("./events/join"));
     eventBus.listen("CHAT_MESSAGE", require("./events/chatmessage"));
 }
 
 module.exports = {
-    addClient,
-    removeClient,
+    addPlayer,
+    disconnectPlayer,
     clientsOf,
+    roomCodeOf,
     registerListeners
 };

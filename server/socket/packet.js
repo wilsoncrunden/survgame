@@ -5,10 +5,34 @@ class ClientboundPacket {
         this.type = type;
     }
 
-    broadcast(roomCode) {
+    /**
+     * @description Broadcasts packet to a room from an optional sender's username
+     */
+    broadcast(roomCode, sender = null) {
         for (let client of socket.clientsOf(roomCode)) {
-            client.send(JSON.stringify(this));
+            if (client.username != sender || sender == null) {
+                client.send(JSON.stringify(this));
+            }
         }
+
+        // Log successful packet
+        console.log(`[Clientbound@${roomCode}] ${this.type} broadcasted by ${sender ?? "server"}`);
+    }
+}
+
+class JoinPacket extends ClientboundPacket {
+    constructor(username) {
+        super("JOIN");
+
+        this.username = username;
+    }
+}
+
+class QuitPacket extends ClientboundPacket {
+    constructor(username) {
+        super("QUIT");
+
+        this.username = username;
     }
 }
 
@@ -20,3 +44,9 @@ class ChatMessagePacket extends ClientboundPacket {
         this.message = message;
     }
 }
+
+module.exports = {
+    JoinPacket,
+    QuitPacket,
+    ChatMessagePacket
+};

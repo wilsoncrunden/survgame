@@ -25,6 +25,11 @@
     border-left: 2px solid black;
 }
 
+#chat span {
+    width: 280px;
+    word-wrap: break-word;
+}
+
 #chatTitle {
     font-size: 24px;
 }

@@ -1,10 +1,20 @@
+const { ChatMessagePacket } = require("./../packet");
+
 function onChatMessage(packet) {
 
     let {
+        room,
+        username,
         message
     } = packet;
 
-    console.log("Chat message received: " + message);
+    // Validation
+    message = message.replace(/[<>]/g, "");
+    if (message.length == 0) return;
+
+    // Relay
+    let relayPacket = new ChatMessagePacket(username, message);
+    relayPacket.broadcast(room);
 
 }
 

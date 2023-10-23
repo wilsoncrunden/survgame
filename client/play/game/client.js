@@ -1,25 +1,28 @@
 const socket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/api/socket");
 
-const roomCode = location.href.split("/").at(-1);
-const sessionToken = document.cookie.match(/(?<=survgame_session_token=).+?(?=;|$)/)[0];
+let joinAttemptHeartbeat;
+socket.addEventListener("open", () => {
+    joinAttemptHeartbeat = setInterval(() => {
+        let joinPacket = new JoinPacket();
+        joinPacket.send();
+    }, 300);
+});
 
-class ServerboundPacket {
-    token = sessionToken;
+socket.addEventListener("close", event => {
 
-    constructor(type, room) {
-        this.type = type;
-        this.room = room;
+    let reason = event.reason.length == 0 ? "Closed by remote host" : event.reason;
+    alert(`Connection closed with code ${event.code}:\n${reason}`);
+
+    location.href = "/dash";
+
+});
+
+socket.addEventListener("message", event => {
+
+    let packet = JSON.parse(event.data);
+
+    for (let listener of eventBus.listenersOf(packet.type)) {
+        listener(packet);
     }
 
-    send() {
-        socket.send(JSON.stringify(this));
-    }
-}
-
-class ChatMessagePacket extends ServerboundPacket {
-    constructor(room, message) {
-        super("CHAT_MESSAGE", room);
-
-        this.message = message;
-    }
-}
+});

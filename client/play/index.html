@@ -21,10 +21,6 @@
 
             <div id="chat">
                 <b id="chatTitle">Room Chat</b>
-
-                <span>Shane: hello its me boyd</span>
-                <span>WintrCat: get real script</span>
-                <span>mikoexe: help me</span>
                 
                 <!-- 19 comments fit on same page -->
             </div>
@@ -40,14 +36,21 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script src="/static/play/account.js"></script>
-
     <!-- GAME -->
 
     <!-- Socket Client -->
+    <script src="/static/play/game/packet.js"></script>
     <script src="/static/play/game/client.js"></script>
+
+    <!-- Event Bus -->
+    <script src="/static/play/game/event.js"></script>
 
     <!-- Chat -->
     <script src="/static/play/game/chat/send.js"></script>
+    <script src="/static/play/game/chat/receive.js"></script>
+
+    <!-- OTHER -->
+    <script src="/static/play/account.js"></script>
+
 </body>
 </html>
