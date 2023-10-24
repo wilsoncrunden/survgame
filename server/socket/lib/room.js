@@ -1,3 +1,5 @@
+const { ClientboundPacket } = require("./packet");
+
 class Room {
 
     clients = new Set();
@@ -10,15 +12,29 @@ class Room {
     }
 
     /**
-     * @returns {string[]}
-     * @description Returns list of connected clients' usernames
+     * @param {ClientboundPacket} packet
+     * @param {string?} sender
+     * @description Broadcasts packet to all clients in the room excluding an optional sender's username
      */
-    players() {
-        let usernames = [];
+    broadcast(packet, sender = null) {
         for (let client of this.clients.values()) {
-            usernames.push(client.username);
+            if (client.player.username != sender) {
+                client.send(JSON.stringify(packet));
+            }
         }
-        return usernames;
+    }
+
+    /**
+     * @param {string} username
+     * @description Returns client with given username or null if client is not in this room
+     */
+    getPlayer(username) {
+        for (let client of this.clients.values()) {
+            if (client.player.username == username) {
+                return client;
+            }
+        }
+        return null;
     }
 
     /**
@@ -26,7 +42,7 @@ class Room {
      */
     disconnect(username) {
         for (let client of this.clients.values()) {
-            if (client.username == username) {
+            if (client.player.username == username) {
                 return this.clients.delete(client);
             }
         }

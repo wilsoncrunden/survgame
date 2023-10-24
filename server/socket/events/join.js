@@ -1,18 +1,21 @@
-const socket = require("./../socket");
+const socket = require("../socket");
 
 const { JoinPacket } = require("../lib/packet");
+const Player = require("../lib/player");
 
-function onClientJoin(packet, client) {
+async function onClientJoin(packet, client) {
 
     let {
         room,
         username
     } = packet;
 
-    socket.addPlayer(room, client);
+    client.player = new Player(username);
+    client.player.room = socket.roomWithCode(room);
 
-    let relayPacket = new JoinPacket(username);
-    relayPacket.broadcast(room);
+    client.player.room.clients.add(client);
+
+    client.player.room.broadcast(new JoinPacket(username));
 
 }
 

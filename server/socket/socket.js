@@ -5,61 +5,25 @@ const eventBus = require("./lib/event");
 /**
  * @type {Room[]}
  */
-const rooms = [];
+const rooms = [new Room("public")];
 
 /**
- * @description Adds a client to a room
+ * @description Returns room with given room code or null if no such room exists
  */
-function addPlayer(roomCode, client) {
-    // Add player to existing room
+function roomWithCode(roomCode) {
     for (let room of rooms) {
-        if (room.code == roomCode) {
-            if (room.players().includes(client.username)) {
-                return false;
-            }
-
-            room.clients.add(client);
-            return true;
-        }
+        if (room.code == roomCode) return room;
     }
-
-    // If no such room exists, create a new one with player in it
-    // Change this later when rooms must be opened manually
-    let newRoom = new Room(roomCode);
-    newRoom.clients.add(client);
-    rooms.push(newRoom);
-
-    return true;
+    return null;
 }
 
 /**
- * @description Disconnects a client from any room
+ * @description Returns room with given player or null if no such room exists
  */
-function disconnectPlayer(username) {
+function roomWithPlayer(username) {
     for (let room of rooms) {
-        if (room.disconnect(username)) break;
-    }
-}
-
-/**
- * @description Returns the clients of a room given its room code
- */
-function clientsOf(roomCode) {
-    for (let room of rooms) {
-        if (room.code == roomCode) {
-            return room.clients.values();
-        }
-    }
-    return [];
-}
-
-/**
- * @description Returns the room code of a given client or null
- */
-function roomCodeOf(username) {
-    for (let room of rooms) {
-        if (room.players().includes(username)) {
-            return room.code;
+        if (room.getPlayer(username) != null) {
+            return room;
         }
     }
     return null;
@@ -74,9 +38,7 @@ function registerListeners() {
 }
 
 module.exports = {
-    addPlayer,
-    disconnectPlayer,
-    clientsOf,
-    roomCodeOf,
+    roomWithCode,
+    roomWithPlayer,
     registerListeners
 };
