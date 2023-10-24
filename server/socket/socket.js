@@ -1,6 +1,6 @@
 const Room = require("./lib/room");
 
-const eventBus = require("./event");
+const eventBus = require("./lib/event");
 
 /**
  * @type {Room[]}

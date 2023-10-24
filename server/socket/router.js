@@ -1,9 +1,9 @@
 const { Router } = require("express");
 
-const { QuitPacket } = require("./packet");
-const session = require("./../session");
+const { QuitPacket } = require("./lib/packet");
+const session = require("../lib/session");
 const socket = require("./socket");
-const eventBus = require("./event");
+const eventBus = require("./lib/event");
 
 /**
  * @type {Router}

@@ -1,4 +1,4 @@
-const socket = require("./socket");
+const socket = require("../socket");
 
 class ClientboundPacket {
     constructor(type) {

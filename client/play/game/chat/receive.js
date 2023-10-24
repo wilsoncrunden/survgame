@@ -40,6 +40,6 @@ eventBus.listen("QUIT", packet => {
         username
     } = packet;
 
-    loadChatMessage(`<b style=color:#ff9f46>${username} has left the room.</b>`)
+    loadChatMessage(`<b style=color:#ff9f46>${username} has left the room.</b>`);
 
 })

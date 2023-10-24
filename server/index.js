@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
-require("./database").keepalive();
+require("./lib/database").keepalive();
 require("./socket/socket").registerListeners();
 
 const app = express();
@@ -13,7 +13,7 @@ require("express-ws")(app);
 app.use("/media", express.static("assets"));
 app.use("/static", express.static("client"));
 app.use(express.json());
-app.use(require("./session").parser);
+app.use(require("./lib/session").parser);
 
 // API Routes
 app.use(require("./routes/register"));

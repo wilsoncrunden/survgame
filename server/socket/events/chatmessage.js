@@ -1,4 +1,4 @@
-const { ChatMessagePacket } = require("./../packet");
+const { ChatMessagePacket } = require("../lib/packet");
 
 function onChatMessage(packet) {
 

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const session = require("./../session");
+const session = require("../lib/session");
 
 /**
  * @type {Router}

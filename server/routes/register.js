@@ -2,8 +2,8 @@ const { Router } = require("express");
 const bcrypt = require("bcrypt");
 const fetch = require("node-fetch");
 
-const database = require("./../database");
-const session = require("./../session");
+const database = require("../lib/database");
+const session = require("../lib/session");
 
 /**
  * @type {Router}

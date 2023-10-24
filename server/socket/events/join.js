@@ -1,6 +1,6 @@
 const socket = require("./../socket");
 
-const { JoinPacket } = require("./../packet");
+const { JoinPacket } = require("../lib/packet");
 
 function onClientJoin(packet, client) {
 
