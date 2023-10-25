@@ -19,7 +19,7 @@ function verifyCredentials(res, username, password) {
 
     // Username should be alphanumeric including _
     if (/\W/.test(username)) {
-        res.status(400).send("Username must be alphanumeric including _");
+        res.status(400).send("Username must be alphanumeric including _.");
         return false;
     }
 

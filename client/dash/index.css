@@ -36,9 +36,15 @@
 #roomCode {
     vertical-align: middle;
     
-    width: 20vw;
+    width: 250px;
     height: 40px;
 
     text-align: center;
     font-size: 18px;
+}
+
+#joinRoomCodeMessage {
+    margin-bottom: 0px;
+
+    color: var(--secondary-color);
 }

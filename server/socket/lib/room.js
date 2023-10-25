@@ -22,6 +22,15 @@ class Room {
                 client.send(JSON.stringify(packet));
             }
         }
+
+        console.log(`[Clientbound@${this.code}] ${packet.type} broadcasted by ${sender ?? "server"}`);
+    }
+
+    /**
+     * @description Returns list of usernames of connected players
+     */
+    usernames() {
+        return [...this.clients].map(client => client.player.username);
     }
 
     /**

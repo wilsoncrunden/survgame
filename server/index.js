@@ -21,6 +21,7 @@ app.use(require("./routes/login"));
 app.use(require("./routes/logout"));
 app.use(require("./routes/delete"));
 app.use(require("./routes/profile"));
+app.use(require("./routes/room"));
 
 app.use(require("./socket/router"));
 
