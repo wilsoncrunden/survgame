@@ -1,5 +1,4 @@
 server/node_modules
 .env
-*.png
 security.txt
-*.ps1
+*.png

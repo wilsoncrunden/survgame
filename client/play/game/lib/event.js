@@ -19,4 +19,4 @@ const eventBus = {
     listenersOf(packetType) {
         return this.events[packetType] ?? [];
     }
-}
+};

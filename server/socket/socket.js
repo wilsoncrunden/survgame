@@ -18,18 +18,6 @@ function roomWithCode(roomCode) {
 }
 
 /**
- * @description Returns room with given player or null if no such room exists
- */
-function roomWithPlayer(username) {
-    for (let room of rooms) {
-        if (room.getPlayer(username) != null) {
-            return room;
-        }
-    }
-    return null;
-}
-
-/**
  * @description Registers vanilla listeners against the event bus
  */
 function registerListeners() {
@@ -39,6 +27,5 @@ function registerListeners() {
 
 module.exports = {
     roomWithCode,
-    roomWithPlayer,
     registerListeners
 };

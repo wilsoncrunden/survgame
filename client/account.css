@@ -30,3 +30,17 @@
     color: rgb(255, 54, 54);
     font-size: 14px;
 }
+
+/*
+    PAGE FOOTER
+*/
+footer {
+    position: absolute;
+    top: 120vh;
+
+    font-family: "JetBrainsMono";
+}
+
+footer a {
+    font-family: "JetBrainsMono";
+}

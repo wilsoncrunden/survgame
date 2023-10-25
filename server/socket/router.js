@@ -28,13 +28,13 @@ router.ws("/api/socket", client => {
             return client.close(1008, "Client player not initialised");
         }
 
-        // Log successful packet
-        console.log(`[Serverbound@${packet.room}] ${packet.type} from ${username}`);
-
         // Invoke listeners of received packet type
         for (let listener of eventBus.listenersOf(packet.type)) {
             listener(packet, client);
         }
+
+        // Log successful packet
+        console.log(`[Serverbound@${packet.room}] ${packet.type} from ${username}`);
 
     });
 

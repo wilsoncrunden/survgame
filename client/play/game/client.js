@@ -1,17 +1,25 @@
-const socket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/api/socket");
+const socket = new WebSocket("wss://" + location.hostname + "/api/socket");
 
+// Heartbeat JoinPacket until one is responded to
 let joinAttemptHeartbeat;
 socket.addEventListener("open", () => {
+
     joinAttemptHeartbeat = setInterval(() => {
         let joinPacket = new JoinPacket();
         joinPacket.send();
     }, 300);
+
 });
 
+eventBus.listen("JOIN", () => {
+    clearInterval(joinAttemptHeartbeat);
+});
+
+// Display disconnect message upon closure
 socket.addEventListener("close", event => {
 
     let reason = event.reason.length == 0 ? "Closed by remote host" : event.reason;
-    alert(`Connection closed with code ${event.code}:\n${reason}`);
+    alert(`Connection closed:\n${reason}`);
 
     location.href = "/dash";
 

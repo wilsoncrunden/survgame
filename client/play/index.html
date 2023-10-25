@@ -12,7 +12,7 @@
     <div id="content">
         <h1 id="title">survgame</h1>
 
-        <h2 id="username">Logged in as ...</h2>
+        <h2 id="connectionMessage"></h2>
 
         <div id="game">
             <div id="player">
@@ -38,16 +38,15 @@
 
     <!-- GAME -->
 
+    <!-- Libraries -->
+    <script src="/static/play/game/lib/packet.js"></script>
+    <script src="/static/play/game/lib/event.js"></script>
+
     <!-- Socket Client -->
-    <script src="/static/play/game/packet.js"></script>
     <script src="/static/play/game/client.js"></script>
 
-    <!-- Event Bus -->
-    <script src="/static/play/game/event.js"></script>
-
-    <!-- Chat -->
-    <script src="/static/play/game/chat/send.js"></script>
-    <script src="/static/play/game/chat/receive.js"></script>
+    <!-- Event Listeners -->
+    <script src="/static/play/game/events/chat.js"></script>
 
     <!-- OTHER -->
     <script src="/static/play/account.js"></script>

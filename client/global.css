@@ -34,20 +34,6 @@
 }
 
 /*
-    PAGE FOOTER
-*/
-footer {
-    position: absolute;
-    bottom: 3px;
-
-    font-family: "JetBrainsMono";
-}
-
-footer a {
-    font-family: "JetBrainsMono";
-}
-
-/*
     STANDARD BUTTON
 */
 .btn {
