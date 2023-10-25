@@ -1,12 +1,8 @@
 const { Router } = require("express");
 
-const socket = require("./socket");
-
 const { QuitPacket } = require("./lib/packet");
 const session = require("../lib/session");
 const eventBus = require("./lib/event");
-const Player = require("./lib/player");
-const Room = require("./lib/room");
 
 /**
  * @type {Router}
@@ -14,6 +10,8 @@ const Room = require("./lib/room");
 const router = new Router();
 
 router.ws("/api/socket", client => {
+
+    client.player = null;
 
     client.on("message", async message => {
 
@@ -25,8 +23,10 @@ router.ws("/api/socket", client => {
             return client.close(1008, "Invalid session");
         }
 
-        // Attach a player to client
-        client.player ??= new Player(username);
+        // Reject non-join packets if client is not in room
+        if (packet.type != "JOIN" && client.player == null) {
+            return client.close(1008, "Client player not initialised");
+        }
 
         // Log successful packet
         console.log(`[Serverbound@${packet.room}] ${packet.type} from ${username}`);
@@ -38,9 +38,14 @@ router.ws("/api/socket", client => {
 
     });
 
-    client.on("close", () => {
+    client.on("close", async () => {
 
-        // implement
+        if (client.player == null) return;
+
+        let username = client.player.username;
+
+        client.player.room.disconnect(username);
+        client.player.room.broadcast(new QuitPacket(username), username);
 
     });
 

@@ -101,9 +101,9 @@ router.post("/api/register", async (req, res) => {
         return;
     }
     
-    if (!await verifyCaptcha(captchaToken)) {
-        return res.status(400).send("You must complete the CAPTCHA.");
-    }
+    // if (!await verifyCaptcha(captchaToken)) {
+    //     return res.status(400).send("You must complete the CAPTCHA.");
+    // }
 
     let hashedPassword = await bcrypt.hash(password, 10);
     database.executeQuery("INSERT INTO accounts (username, password) VALUES(?, ?)", [username, hashedPassword]);
