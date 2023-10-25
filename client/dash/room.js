@@ -1,3 +1,22 @@
+fetch("/api/room", {
+    "method": "POST",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": JSON.stringify({
+        "roomCode": "public"
+    })
+}).then(async res => {
+    let room = await res.json();
+
+    if (room.exists) {
+        $("#publicRoomPlayerCount").html(`${room.players.length} player${room.players.length == 1 ? "" : "s"} online`);
+    } else {
+        $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
+        $("#publicRoomPlayerCount").html("Couldn't connect");
+    }
+});
+
 $("#joinPublicRoomButton").click(() => {
 
     location.href = "/play/public";

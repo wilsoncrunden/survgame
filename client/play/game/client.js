@@ -1,4 +1,4 @@
-const socket = new WebSocket("wss://" + location.hostname + "/api/socket");
+const socket = new WebSocket("ws://" + location.hostname + ":8080/api/socket");
 
 // Heartbeat JoinPacket until one is responded to
 let joinAttemptHeartbeat;
@@ -19,7 +19,7 @@ eventBus.listen("JOIN", () => {
 socket.addEventListener("close", event => {
 
     let reason = event.reason.length == 0 ? "Closed by remote host" : event.reason;
-    alert(`Connection closed:\n${reason}`);
+    alert("Connection closed:\n" + reason);
 
     location.href = "/dash";
 
