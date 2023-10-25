@@ -24,6 +24,7 @@ function loadChatMessage(message) {
 
 }
 
+// Listen for send button press or Enter key press to send a message
 $("#sendChatMessageButton").click(sendMessage);
 addEventListener("keypress", event => {
     if (event.key == "Enter" && $("#chatMessageField").is(":focus")) {
@@ -31,6 +32,7 @@ addEventListener("keypress", event => {
     }
 });
 
+// Load chat messages when they are received
 eventBus.listen("CHAT_MESSAGE", packet => {
 
     let {
@@ -44,6 +46,7 @@ eventBus.listen("CHAT_MESSAGE", packet => {
 
 });
 
+// Load join system message when join packet is received
 eventBus.listen("JOIN", packet => {
 
     let {
@@ -54,6 +57,7 @@ eventBus.listen("JOIN", packet => {
 
 });
 
+// Load quit system message when quit packet is received
 eventBus.listen("QUIT", packet => {
 
     let {

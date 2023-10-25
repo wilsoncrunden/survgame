@@ -34,6 +34,7 @@ class Room {
     send(packet, recipient) {
         for (let client of this.clients.values()) {
             if (client.player.username == recipient) {
+                console.log(`[Clientbound@${this.code}] ${packet.type} sent to ${recipient}`);
                 return client.send(JSON.stringify(packet));
             }
         }

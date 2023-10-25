@@ -20,7 +20,10 @@
             </div>
 
             <div id="chat">
-                <b id="chatTitle">Room Chat</b>
+                <div id="chatTitleArea">
+                    <b id="chatTitle">Room Chat</b>
+                    <b id="chatPlayerCount">0 online</b>
+                </div>
                 
                 <!-- 19 comments fit on same page -->
             </div>
@@ -46,6 +49,8 @@
     <script src="/static/play/game/client.js"></script>
 
     <!-- Event Listeners -->
+    <script src="/static/play/game/events/connection.js"></script>
+    <script src="/static/play/game/events/playerfetch.js"></script>
     <script src="/static/play/game/events/chat.js"></script>
 
     <!-- OTHER -->

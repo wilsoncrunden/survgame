@@ -11,10 +11,6 @@ socket.addEventListener("open", () => {
 
 });
 
-eventBus.listen("JOIN", () => {
-    clearInterval(joinAttemptHeartbeat);
-});
-
 // Display disconnect message upon closure
 socket.addEventListener("close", event => {
 

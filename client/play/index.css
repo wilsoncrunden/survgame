@@ -20,7 +20,7 @@
     align-items: start;
     gap: 5px;
 
-    padding: 10px;
+    padding: 5px 10px;
 
     border-left: 2px solid black;
 }
@@ -30,8 +30,24 @@
     word-wrap: break-word;
 }
 
+#chatTitleArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
 #chatTitle {
     font-size: 24px;
+}
+
+#chatPlayerCount {
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+#chatPlayerCount:hover {
+    color: rgb(34, 34, 88);
 }
 
 #chatForm {
