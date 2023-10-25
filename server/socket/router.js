@@ -34,7 +34,7 @@ router.ws("/api/socket", client => {
         }
 
         // Log successful packet
-        console.log(`[Serverbound@${packet.room}] ${packet.type} from ${username}`);
+        console.log(`[Serverbound@${client.player == null ? "unjoined" : client.player.room.code}] ${packet.type} from ${username}`);
 
     });
 
