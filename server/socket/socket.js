@@ -22,6 +22,7 @@ function roomWithCode(roomCode) {
  */
 function registerListeners() {
     eventBus.listen("JOIN", require("./events/join"));
+    eventBus.listen("PLAYER_FETCH", require("./events/playerfetch"));
     eventBus.listen("CHAT_MESSAGE", require("./events/chatmessage"));
 }
 

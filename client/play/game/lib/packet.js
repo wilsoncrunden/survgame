@@ -20,6 +20,12 @@ class JoinPacket extends ServerboundPacket {
     }
 }
 
+class PlayerFetchPacket extends ServerboundPacket {
+    constructor() {
+        super("PLAYER_FETCH");
+    }
+}
+
 class ChatMessagePacket extends ServerboundPacket {
     constructor(message) {
         super("CHAT_MESSAGE");

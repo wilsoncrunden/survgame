@@ -27,6 +27,19 @@ class Room {
     }
 
     /**
+     * @param {ClientboundPacket} packet
+     * @param {string} recipient
+     * @description Send a packet to a particular recipient given their username
+     */
+    send(packet, recipient) {
+        for (let client of this.clients.values()) {
+            if (client.player.username == recipient) {
+                return client.send(JSON.stringify(packet));
+            }
+        }
+    }
+
+    /**
      * @description Returns list of usernames of connected players
      */
     usernames() {

@@ -20,6 +20,14 @@ class QuitPacket extends ClientboundPacket {
     }
 }
 
+class PlayerFetchPacket extends ClientboundPacket {
+    constructor(players) {
+        super("PLAYER_FETCH");
+
+        this.players = players;
+    }
+}
+
 class ChatMessagePacket extends ClientboundPacket {
     constructor(username, message) {
         super("CHAT_MESSAGE");
@@ -33,5 +41,6 @@ module.exports = {
     ClientboundPacket,
     JoinPacket,
     QuitPacket,
+    PlayerFetchPacket,
     ChatMessagePacket
 };
