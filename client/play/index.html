@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/static/global.css">
     <link rel="stylesheet" href="/static/play/index.css">
+    <link rel="stylesheet" href="/static/play/chat.css">
 </head>
 <body>
     <div id="content">
@@ -36,7 +37,14 @@
             </div>
         </div>
 
-        <button class="blue btn" onclick="location.href='/dash';">Disconnect</button>
+        <div id="roomContextMenu">
+            <input id="shareLink" class="textField" type="text" disabled>
+            <button id="copyShareLinkButton" class="blue btn" title="Copy Link" style="padding:5px">
+                <img src="/media/copy.png" height="29px" alt="Copy" style="transform:translateY(2px)">
+            </button>
+
+            <button id="disconnectButton" class="blue btn">Disconnect</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -57,6 +65,7 @@
 
     <!-- OTHER -->
     <script src="/static/play/account.js"></script>
+    <script src="/static/play/context.js"></script>
 
 </body>
 </html>
