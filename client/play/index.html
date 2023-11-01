@@ -23,7 +23,7 @@
             <div id="chat">
                 <div id="chatTitleArea">
                     <b id="chatTitle">Room Chat</b>
-                    <b id="chatPlayerCount">Connecting...</b>
+                    <b id="chatPlayerCount">Fetching...</b>
                 </div>
                 
                 <!-- 19 comments fit on same page -->
@@ -47,23 +47,14 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- GAME -->
-
     <!-- Libraries -->
-    <script src="/static/play/game/lib/packet.js"></script>
-    <script src="/static/play/game/lib/event.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
 
     <!-- Socket Client -->
-    <script src="/static/play/game/client.js"></script>
+    <script src="/static/play/client/client.js"></script>
 
-    <!-- Event Listeners -->
-    <script src="/static/play/game/events/connection.js"></script>
-    <script src="/static/play/game/events/playerfetch.js"></script>
-    <script src="/static/play/game/events/chat.js"></script>
-
-    <!-- OTHER -->
+    <!-- Other -->
     <script src="/static/play/account.js"></script>
     <script src="/static/play/context.js"></script>
 

@@ -1,8 +1,8 @@
-$("#shareLink").val(`${location.protocol}//${location.host}/play/${roomCode}`);
+$("#shareLink").val(location.href);
 
 $("#copyShareLinkButton").click(() => {
-   
-    navigator.clipboard.writeText($("#shareLink").val());
+
+    navigator.clipboard.writeText(location.href);
 
 });
 
