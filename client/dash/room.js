@@ -15,6 +15,9 @@ fetch("/api/room", {
         $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
         $("#publicRoomPlayerCount").html("Couldn't connect");
     }
+}).catch(err => {
+    $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
+    $("#publicRoomPlayerCount").html("Couldn't connect");
 });
 
 $("#joinPublicRoomButton").click(() => {

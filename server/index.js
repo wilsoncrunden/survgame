@@ -2,16 +2,13 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 require("./lib/database").keepalive();
-require("./socket/socket").registerListeners();
 
 const app = express();
-
-// Plugins
-require("express-ws")(app);
 
 // Middlewares
 app.use("/media", express.static("assets"));
 app.use("/static", express.static("client"));
+
 app.use(express.json());
 app.use(require("./lib/session").parser);
 
@@ -21,9 +18,9 @@ app.use(require("./routes/login"));
 app.use(require("./routes/logout"));
 app.use(require("./routes/delete"));
 app.use(require("./routes/profile"));
-app.use(require("./routes/room"));
 
-app.use(require("./socket/router"));
+// Socket Server
+require("./socket/router");
 
 // Static Routes
 app.get("/", async (req, res) => {

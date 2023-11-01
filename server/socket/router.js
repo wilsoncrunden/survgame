@@ -1,54 +1,15 @@
-const { Router } = require("express");
+const { Server } = require("socket.io");
 
-const { QuitPacket } = require("./lib/packet");
-const session = require("../lib/session");
-const eventBus = require("./lib/event");
+const survgame = new Server(8081, {
+    "cors": {
+        "origin": process.env.SOCKET_ALLOWED_ORIGIN
+    }
+});
 
-/**
- * @type {Router}
- */
-const router = new Router();
+survgame.on("connection", client => {
 
-router.ws("/api/socket", client => {
-
-    client.player = null;
-
-    client.on("message", async message => {
-
-        let packet = JSON.parse(message);
-
-        // Authenticate packet token
-        let username = await session.usernameOf(packet.token);
-        if (username == null) {
-            return client.close(1008, "Invalid session");
-        }
-
-        // Reject non-join packets if client is not in room
-        if (packet.type != "JOIN" && client.player == null) {
-            return client.close(1008, "Client player not initialised");
-        }
-
-        // Invoke listeners of received packet type
-        for (let listener of eventBus.listenersOf(packet.type)) {
-            listener(packet, client);
-        }
-
-        // Log successful packet
-        console.log(`[Serverbound@${client.player == null ? "unjoined" : client.player.room.code}] ${packet.type} from ${username}`);
-
-    });
-
-    client.on("close", async () => {
-
-        if (client.player == null) return;
-
-        let username = client.player.username;
-
-        client.player.room.disconnect(username);
-        client.player.room.broadcast(new QuitPacket(username), username);
-
-    });
+    console.log("Client connected!");
 
 });
 
-module.exports = router;
+console.log("Survgame socket server running on port 8081");
