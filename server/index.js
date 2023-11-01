@@ -64,7 +64,7 @@ app.get("/play/:roomCode", async (req, res) => {
 // 404 Route
 app.get("/404", async (req, res) => {
     res.sendFile(path.resolve("./client/unfound/index.html"));
-})
+});
 
 app.use(async (req, res) => {
     res.redirect("/404");
