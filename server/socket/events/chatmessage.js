@@ -1,4 +1,4 @@
-const { Socket } = require("socket.io");
+const { Socket, Server } = require("socket.io");
 
 const Player = require("../lib/player");
 
@@ -9,6 +9,12 @@ const type = "chat_message";
  * @param {string} message
  */
 async function dispatch(client, message) {
+
+    /**
+     * @type {Server}
+     */
+    let server = client.server;
+
 
     /**
      * @type {Player}
@@ -26,7 +32,7 @@ async function dispatch(client, message) {
     player.lastMessageTimestamp = Date.now();
 
     // Broadcast relay packet
-    client.server.to(player.room).emit("chat_message", player.username, message);
+    server.to(player.room).emit("chat_message", player.username, message);
     client.emit("chat_message_success");
 
 }
