@@ -13,14 +13,30 @@ const events = readdirSync("server/socket/events").map(file => {
 
 survgame.on("connection", client => {
 
-    console.log("Client connected!");
+    // Attach server instance to client
+    client.server = survgame;
 
     // Register events
     client.onAny((event, ...args) => {
+
+        if ((!client.player && event != "join") || (client.player && event == "join")) {
+            return client.disconnect(true);
+        }
+
         for (let listener of events) {
             if (listener.type != event) continue;
             listener.dispatch(client, ...args);
         }
+
+    });
+
+    client.on("disconnect", () => {
+
+        if (!client.player) return;
+
+        let player = client.player;
+        survgame.to(player.room).emit("quit", player.username);
+
     });
 
 });

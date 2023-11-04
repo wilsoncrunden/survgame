@@ -1,3 +1,6 @@
+/*
+    Chat area of game frame
+*/
 #chat {
     display: flex;
     flex-direction: column;
@@ -9,11 +12,9 @@
     border-left: 2px solid black;
 }
 
-#chat span {
-    width: 280px;
-    word-wrap: break-word;
-}
-
+/*
+    Area that holds Room Chat title and player count
+*/
 #chatTitleArea {
     display: flex;
     justify-content: space-between;
@@ -22,10 +23,16 @@
     width: 100%;
 }
 
+/*
+    Room Chat title
+*/
 #chatTitle {
     font-size: 24px;
 }
 
+/*
+    Room Chat player count
+*/
 #chatPlayerCount {
     cursor: pointer;
     transition: color 0.5s ease;
@@ -34,6 +41,30 @@
     color: rgb(34, 34, 88);
 }
 
+/*
+    Area that holds chat messages
+*/
+#chatMessagesArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*
+    Individual chat messages
+*/
+#chatMessagesArea span {
+    width: 271px;
+    word-wrap: break-word;
+}
+
+/*
+    Area that holds message box and send button
+*/
 #chatForm {
     display: flex;
     align-items: end;
@@ -44,6 +75,9 @@
     border-left: 2px solid black;
 }
 
+/*
+    Message input box
+*/
 #chatMessageField {
     width: 100%;
     height: 43px;
@@ -53,6 +87,9 @@
     font-size: 18px;
 }
 
+/*
+    Send message button
+*/
 #sendChatMessageButton {
     width: 55px;
     height: 48px;
@@ -64,11 +101,9 @@
 
     transition: background-color 0.3s ease;
 }
-
 #sendChatMessageButton:hover {
     background-color: var(--primary-color-darker);
 }
-
 #sendChatMessageButton img {
     width: 30px;
     height: auto;

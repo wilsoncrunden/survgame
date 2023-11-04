@@ -1,7 +1,13 @@
+/*
+    Connected to ROOM as USERNAME message
+*/
 #username {
     margin-top: 0px;
 }
 
+/*
+    Frame that contains canvas and chat room
+*/
 #game {
     display: grid;
     grid-template-rows: 540px 60px;
@@ -12,16 +18,25 @@
     border: 2px solid black;
 }
 
+/*
+    Canvas area of the game frame
+*/
 #player {
     grid-row: span 2;
 }
 
+/*
+    Area that holds the context menu
+*/
 #roomContextMenu {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
+/*
+    Text box that holds the share URL
+*/
 #shareLink {
     width: 250px;
     height: 43px;

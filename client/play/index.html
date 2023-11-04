@@ -26,11 +26,19 @@
                     <b id="chatPlayerCount">Fetching...</b>
                 </div>
                 
+                <div id="chatMessagesArea"></div>
                 <!-- 19 comments fit on same page -->
             </div>
 
             <div id="chatForm">
-                <input id="chatMessageField" class="textField" type="text" placeholder="Send Message...">
+                <input 
+                    id="chatMessageField" 
+                    class="textField" 
+                    type="text" 
+                    placeholder="Send Message..." 
+                    maxlength=192 
+                    data-cooldown=0
+                >
                 <button id="sendChatMessageButton">
                     <img src="/media/send.png" alt="▶">
                 </button>
@@ -53,6 +61,14 @@
 
     <!-- Socket Client -->
     <script src="/static/play/client/client.js"></script>
+
+    <!-- Socket Libraries -->
+    <script src="/static/play/client/lib/chat.js"></script>
+
+    <!-- Socket Event Listeners -->
+    <script src="/static/play/client/events/join.js"></script>
+    <script src="/static/play/client/events/quit.js"></script>
+    <script src="/static/play/client/events/chat.js"></script>
 
     <!-- Other -->
     <script src="/static/play/account.js"></script>
