@@ -41,4 +41,4 @@ survgame.on("connection", client => {
 
 });
 
-console.log("Survgame socket server running on port 8081");
+console.log("Survgame socket server running on port " + (parseInt(process.env.EXPRESS_PORT) + 1));
