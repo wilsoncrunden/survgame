@@ -6,17 +6,20 @@ const survgame = new Server(8081, {
         "origin": process.env.SOCKET_ALLOWED_ORIGIN
     }
 });
-const events = readdirSync("server/socket/events").map(file => require("./events/" + file));
+
+const events = readdirSync("server/socket/events").map(file => {
+    return require("./events/" + file);
+});
 
 survgame.on("connection", client => {
 
     console.log("Client connected!");
 
     // Register events
-    client.onAny((event, ...arguments) => {
+    client.onAny((event, ...args) => {
         for (let listener of events) {
             if (listener.type != event) continue;
-            return listener.dispatch(client, ...arguments);
+            listener.dispatch(client, ...args);
         }
     });
 
