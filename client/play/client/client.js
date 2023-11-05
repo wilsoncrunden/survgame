@@ -1,7 +1,10 @@
 const roomCode = location.pathname.split("/").at(-1);
 const sessionToken = document.cookie.match(/(?<=survgame_session_token=).+?(?=;|$)/)[0];
 
-const socket = io(`${location.protocol.startsWith("https") ? "wss" : "ws"}://${location.hostname}/api/socket`);
+let socket = io("wss://socket.surv.wintrcat.uk/");
+if (socket.connected == false) {
+    socket = io("ws://localhost:8081");
+}
 
 socket.on("disconnect", () => {
     
