@@ -1,5 +1,6 @@
-const { Socket, Server } = require("socket.io");
+const { Socket } = require("socket.io");
 
+const survgame = require("../server");
 const Player = require("../lib/player");
 
 const type = "chat_message";
@@ -9,12 +10,6 @@ const type = "chat_message";
  * @param {string} message
  */
 async function dispatch(client, message) {
-
-    /**
-     * @type {Server}
-     */
-    let server = client.server;
-
 
     /**
      * @type {Player}
@@ -32,7 +27,7 @@ async function dispatch(client, message) {
     player.lastMessageTimestamp = Date.now();
 
     // Broadcast relay packet
-    server.to(player.room).emit("chat_message", player.username, message);
+    survgame.to(player.room).emit("chat_message", player.username, message);
     client.emit("chat_message_success");
 
 }

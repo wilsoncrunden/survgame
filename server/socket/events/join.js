@@ -1,6 +1,7 @@
 const { Socket } = require("socket.io");
 
 const session = require("../../lib/session");
+const survgame = require("../server");
 const Player = require("../lib/player");
 
 const type = "join";
@@ -27,7 +28,7 @@ async function dispatch(client, roomCode, token) {
     client.join(roomCode);
 
     // Broadcast relay packet
-    client.server.to(roomCode).emit("join", username);
+    survgame.to(roomCode).emit("join", username);
 
 }
 

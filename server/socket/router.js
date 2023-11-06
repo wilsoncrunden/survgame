@@ -1,20 +1,12 @@
-const { Server } = require("socket.io");
 const { readdirSync } = require("fs");
 
-const survgame = new Server(parseInt(process.env.EXPRESS_PORT) + 1, {
-    "cors": {
-        "origin": process.env.SOCKET_ALLOWED_ORIGIN
-    }
-});
+const survgame = require("./server");
 
 const events = readdirSync("server/socket/events").map(file => {
     return require("./events/" + file);
 });
 
 survgame.on("connection", client => {
-
-    // Attach server instance to client
-    client.server = survgame;
 
     // Register events
     client.onAny((event, ...args) => {

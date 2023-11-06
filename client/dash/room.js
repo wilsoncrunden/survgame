@@ -3,21 +3,17 @@ fetch("/api/room", {
     "headers": {
         "Content-Type": "application/json"
     },
-    "body": JSON.stringify({
-        "roomCode": "public"
-    })
+    "body": JSON.stringify({ "roomCode": "public" })
 }).then(async res => {
-    let room = await res.json();
 
-    if (room.exists) {
-        $("#publicRoomPlayerCount").html(`${room.players.length} player${room.players.length == 1 ? "" : "s"} online`);
-    } else {
-        $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
-        $("#publicRoomPlayerCount").html("Couldn't connect");
-    }
+    let room = await res.json();
+    $("#publicRoomPlayerCount").html(`${room.players.length} player${room.players.length == 1 ? "" : "s"} online`);
+
 }).catch(err => {
+
     $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
     $("#publicRoomPlayerCount").html("Couldn't connect");
+
 });
 
 $("#joinPublicRoomButton").click(() => {
@@ -46,7 +42,7 @@ $("#joinRoomCodeButton").click(async () => {
             $("#joinRoomCodeMessage").html("A room with that code does not exist.");
         }
     } catch (err) {
-        $("#joinRoomCodeMessage").html("Unknown error.")
+        $("#joinRoomCodeMessage").html("This is still under development.");
     }
 
 });
