@@ -9,6 +9,9 @@ fetch("/api/room", {
     let room = await res.json();
     $("#publicRoomPlayerCount").html(`${room.players.length} player${room.players.length == 1 ? "" : "s"} online`);
 
+    let remainingPlayers = room.players.length > 10 ? `\n...and ${room.players.length - 10} more` : "";
+    $("#publicRoomPlayerCount").attr("title", `${room.players.join("\n")}${remainingPlayers}`);
+
 }).catch(err => {
 
     $("#publicRoomPlayerCount").css("color", "var(--secondary-color)");
