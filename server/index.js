@@ -51,6 +51,13 @@ app.get("/dash", async (req, res) => {
     res.sendFile(path.resolve("./client/dash/index.html"));
 });
 
+app.get("/settings", async (req, res) => {
+    if (req.username == null) {
+        return res.redirect("/login");
+    }
+    res.sendFile(path.resolve("./client/settings/index.html"));
+});
+
 app.get("/play", async (req, res) => {
     res.redirect("/dash");
 });

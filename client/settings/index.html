@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>survgame - Settings</title>
+
+    <link rel="icon" href="/media/favicon.ico">
+
+    <link rel="stylesheet" href="/static/global.css">
+    <link rel="stylesheet" href="/static/settings/index.css">
+</head>
+<body>
+    <div id="content">
+        <h1 id="title">survgame</h1>
+
+        <h1>⚙️ Settings</h1>
+
+        <hr>
+
+        <h2>📃 Account</h2>
+        <div class="settingsSection">
+            <div id="profileCard">
+                <h3 id="username">WintrCat</h3>
+                <span id="joinDate">Joined 7/11/2023</span>
+            </div>
+
+            <div>
+                <button id="changeUsernameButton" class="blue btn">Change Username</button>
+                <button id="changePasswordButton" class="blue btn">Change Password</button>
+                <button id="logoutButton" class="red btn">Delete Account</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>🔔 Notifications</h2>
+        <div class="settingsSection">
+            <h3>Receive a notification when:</h3>
+
+            <div>
+                <input class="notificationCheckbox" type="checkbox" data-notification-type="mentions">
+                I am mentioned in the room chat
+            </div>  
+            <div>
+                <input class="notificationCheckbox" type="checkbox" data-notification-type="system">
+                A system message is sent to the room chat
+            </div>
+            <div>
+                <input class="notificationCheckbox" type="checkbox" data-notification-type="all">
+                Anyone sends a message to the room chat
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>🔒 Security</h2>
+        <div class="settingsSection">
+            🚧 Under development...
+        </div>
+
+        <hr>
+
+        <h2>📖 Legal</h2>
+        <div>
+            <button class="blue btn">Terms of Service</button>
+            <button class="blue btn">Privacy Policy</button>
+        </div>
+    </div>
+
+    <script src="/static/settings/account.js"></script>
+</body>
+</html>

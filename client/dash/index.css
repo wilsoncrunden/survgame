@@ -6,8 +6,15 @@
     border: 2px solid black;
 }
 
-#profile h2 {
-    margin-top: 0px;
+#profileCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+#username {
+    margin: 0px;
 }
 
 #publicRoom {

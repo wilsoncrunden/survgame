@@ -106,12 +106,14 @@ router.post("/api/register", async (req, res) => {
     }
 
     let hashedPassword = await bcrypt.hash(password, 10);
-    database.executeQuery("INSERT INTO accounts (username, password) VALUES(?, ?)", [username, hashedPassword]);
+    database.executeQuery("INSERT INTO accounts (username, password, joinTimestamp) VALUES(?, ?, ?)", [
+        username, hashedPassword, Date.now()
+    ]);
 
     let sessionToken = session.generate();
     await session.update(username, sessionToken);
+    
     res.cookie(session.COOKIE_NAME, sessionToken);
-
     res.sendStatus(200);
 
 });
