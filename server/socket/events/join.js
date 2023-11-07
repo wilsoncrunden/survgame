@@ -21,7 +21,7 @@ async function dispatch(client, roomCode, token) {
         return client.disconnect(true);
     }
 
-    // Connect client to room
+    // Connect client to room if not connected from another location
     try {
         var sockets = await survgame.fetchSockets();
     } catch (err) {
